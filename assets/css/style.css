@@ -105,6 +105,10 @@ body {
 }
 
 /* --- Gallery Horizontal Scroll --- */
+.carousel{
+    display: flex;
+}
+
 .gallery-container {
     overflow-x: auto;
     white-space: nowrap;
@@ -121,6 +125,7 @@ body {
 
 /* --- Gallery Item (Supaya Bisa Diklik) --- */
 .gallery-item {
+    flex: 0 0 5em;
     display: inline-block;
     margin-right: 15px;
     cursor: pointer;
