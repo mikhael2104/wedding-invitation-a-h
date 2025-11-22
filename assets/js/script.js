@@ -8,59 +8,86 @@ const namaSambutan = document.querySelector('#nama-sambutan')
 
 namaSambutan.innerText = `${panggilan} ${nama}`
 
+// image scroll
 document.addEventListener("DOMContentLoaded", function() {
     
-    // ====== 1. SMART AUTO SCROLL (Untuk Semua Gallery) ======
-    const galleries = document.querySelectorAll('.gallery-container');
-
-    galleries.forEach((gallery) => {
-        let scrollAmount = 1;
-        let scrollDirection = 1;
-        let isPaused = false;
-
-        // Fungsi Scroll
-        function autoScroll() {
-            if (!isPaused) {
-                // Logika pantulan (ping-pong)
-                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 1) {
-                    scrollDirection = -1; // Mundur
-                } else if (gallery.scrollLeft <= 0) {
-                    scrollDirection = 1; // Maju
-                }
-                
-                gallery.scrollLeft += scrollDirection * 3; // Kecepatan scroll (1 itu smooth)
-            }
-        }
-
-        // Jalankan interval
-        let scrollInterval = setInterval(autoScroll, 20);
-
-        // Fitur UX: Stop scroll saat mouse di atas gallery
-        gallery.addEventListener('mouseenter', () => {
-            isPaused = true;
-            gallery.style.scrollBehavior = 'auto'; // Supaya user bisa scroll manual enak
-        });
-
-        gallery.addEventListener('mouseleave', () => {
-            isPaused = false;
-            gallery.style.scrollBehavior = 'smooth';
-        });
-    });
-
-    // ====== 2. CLICK IMAGE TO OPEN MODAL (Tetap sama, sudah oke) ======
     const modalElement = document.getElementById('imageModal');
     
-    // Cek apakah modal ada di HTML untuk menghindari error
-    if (modalElement) {
-        const modal = new bootstrap.Modal(modalElement);
+    // Cek apakah Bootstrap sudah terload dengan benar
+    if (typeof bootstrap !== 'undefined' && modalElement) {
+        
+        const myModal = new bootstrap.Modal(modalElement);
         const modalImage = document.getElementById('modalImage');
-        const images = document.querySelectorAll('.gallery-img');
+        const galleryImages = document.querySelectorAll('.gallery-img');
 
-        images.forEach(img => {
-            img.addEventListener('click', () => {
-                modalImage.src = img.src;
-                modal.show();
+        console.log("Gallery Script Loaded. Jumlah gambar: " + galleryImages.length);
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                // Set gambar modal sama dengan gambar yang diklik
+                modalImage.src = this.src;
+                // Tampilkan Modal
+                myModal.show();
             });
         });
+
+    } else {
+        console.error("Bootstrap belum terload atau Modal ID tidak ditemukan!");
     }
 });
+
+// rsvp
+window.addEventListener("load", function() {
+    const form = document.getElementById('rsvp-form');
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const status = document.getElementById('status').value
+        const nama = document.getElementById('nama').value
+
+        if (nama === "") {
+            Swal.fire({
+                icon: "error",
+                text: "Nama Harus Diisi"
+            })
+            return;
+        }
+
+        if (status == 0) {
+            Swal.fire({
+                icon: "error",
+                text: "Pilih salah satu"
+            })
+            return;
+        }
+
+        const data = new FormData(form);
+        const action = e.target.action;
+        const input = form.querySelectorAll('input, select, button')
+        input.forEach(input => {
+            input.disabled = true
+        })
+
+        fetch(action, {
+            method: 'POST',
+            body: data
+        })
+        .then(() => {
+            Swal.fire({
+                icon: "success",
+                text: "Konfirmasi Kehadiran Anda Berhasil Terkirim"
+            })
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: "error",
+                text: error
+            })
+        })
+        .finally(() =>{
+            input.forEach(input => {
+                input.disabled = false
+            })
+        })
+    })
+})

@@ -27,7 +27,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1; /* Memotong apapun yang keluar dari kotak */
 }
 
 .bunga_1{
@@ -105,60 +104,55 @@ body {
     margin-left: -50px; 
 }
 
-
-/* Galery-section */
+/* --- Gallery Horizontal Scroll --- */
 .gallery-container {
     overflow-x: auto;
     white-space: nowrap;
     scroll-behavior: smooth;
+    padding: 15px 5px; /* Padding biar shadow tidak terpotong */
+    
+    /* Sembunyikan Scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.gallery-container::-webkit-scrollbar {
+    display: none;
 }
 
+/* --- Gallery Item (Supaya Bisa Diklik) --- */
 .gallery-item {
     display: inline-block;
-    margin-right: 1rem;
+    margin-right: 15px;
     cursor: pointer;
+    position: relative; 
+    z-index: 50; /* Z-INDEX TINGGI AGAR DI ATAS HIASAN */
 }
 
 .gallery-img {
     width: 220px;
     height: 150px;
     object-fit: cover;
+    border-radius: 12px;
     transition: transform 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .gallery-img:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
-    /* Hilangkan scrollbar (opsional) */
-.gallery-container::-webkit-scrollbar {
-    display: none;
-}
-
-.gallery-container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* ====== MODAL CUSTOM ====== */
+/* --- Modal Backdrop Blur --- */
 .modal-backdrop.show {
-    backdrop-filter: blur(8px); /* Efek blur */
-    -webkit-backdrop-filter: blur(8px); /* Support Safari */
-    background-color: rgba(0, 0, 0, 0.6) !important; /* PENTING: Ubah alpha jadi 0.6 agar transparan */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.7) !important;
     opacity: 1 !important;
 }
 
-/* ... sisa css modal content kamu sudah oke ... */
-.modal-content {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-}
-
-.modal-content img {
-    border-radius: 15px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+/* --- Hiasan (PENTING: Agar hiasan tembus klik) --- */
+.bunga-merah, .burung-gallery, .bunga_1, .bunga_2, .burung {
+    pointer-events: none; /* Mouse tidak akan nabrak gambar ini */
+    user-select: none;
 }
 
 .bunga-merah{
@@ -173,7 +167,6 @@ body {
 }
 
 /* Ayat-firman-section */
-
 .border-ayat{
     width:500px;
     margin-left: -80px;
@@ -187,13 +180,12 @@ body {
 
 .bunga_7{
     width: 500px;
-    margin-top: -300px;
     margin-left: -150px;
 }
 
 .text{
-    margin-top: -420px;
     z-index: 1; 
+    margin-top: 100px;
 }
 
 .kalimat-penegas{
@@ -202,4 +194,15 @@ body {
 
 .isi p{
     font-size: 100px;
+}
+
+/* rsvp section */
+.btn-kirim{
+    background-color: #f496fbff;
+    width: 100%;
+}
+.btn-kirim:hover{
+    background-color: #feecffff;
+    color: #f496fbff;
+    width: 100%;
 }
