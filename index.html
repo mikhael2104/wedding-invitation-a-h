@@ -19,6 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700"
         rel="stylesheet">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- font Bundt Cake -->
     <link href="https://db.onlinewebfonts.com/c/8b8212e1382f2d794fae8b8d3d69ce30?family=Bundt+Cake" rel="stylesheet">
 
@@ -33,6 +38,19 @@
 </head>
 
 <body>
+    <!-- music -->
+    <audio src="assets/music/music-wedding.mp3" loop class="music"></audio>
+
+    <!-- navbar -->
+    <ul class="nav position-fixed">
+        <span class="nav-music"></span>
+        <li>
+            <a href="#" class="nav-item-music rotate" id="music-button" onclick="toggleMusic(event)">
+                <i class="fas fa-fw fa-compact-disc"></i>
+            </a>
+        </li>
+    </ul>
+
     <!-- hero section -->
     <section id="hero-section" class="mb-5">
         <div class="container-fluid p-0 kotak">
@@ -40,7 +58,8 @@
                 <div class="col-6 col-sm-3 text-center name">
                     <h2 class="atkinson fst-italic fw-medium font-small mt-5 ms-4 text-left" data-aos="zoom-in-down"
                         data-aos-duration="2000">Undangan Pernikahan</h2>
-                    <h1 class="bundt fw-bold font-big mx-auto" data-aos="fade-right" data-aos-duration="2000">Harry &
+                    <h1 class="bundt fw-bold font-big mx-auto" data-aos="fade-right" data-aos-duration="2000">Harry
+                        &
                     </h1>
                     <h1 class="bundt fw-bold font-big mx-auto" data-aos="fade-right" data-aos-duration="3000">April
                     </h1>
@@ -74,7 +93,7 @@
             <div class="row">
                 <div class="d-flex justify-content-center align-items-center mx-auto col-12" data-aos="zoom-in-down"
                     data-aos-duration="3000" data-aos-delay="100">
-                    <img src="assets/img/border.png" alt="border" class="border z-1">
+                    <img src="assets/img/new_border.png" alt="border" class="border z-1">
                 </div>
                 <div class="justify-content-center align-items-center text-center z-2 position-absolute pemberkatan-text col-12"
                     data-aos="fade-down" data-aos-duration="3000" data-aos-delay="1000">
@@ -240,7 +259,7 @@
     <section id="ayat-firman" class="d-flex align-items-center">
         <div class="container-fluid p-0 kotak mt-5 mb-5">
             <div class="row">
-                <div class="col-8 z-1" data-aos="fade-down" data-aos-duration="3000" data-aos-delay="500">
+                <div class="col-8 z-1" data-aos="zoom-in-down" data-aos-duration="3000" data-aos-delay="500">
                     <img src="assets/img/border.png" alt="border" class="border-ayat">
                 </div>
                 <div class="col-12 z-2 position-absolute">
@@ -251,15 +270,17 @@
                                 memberi
                                 kekuatan <br>
                                 kepadaku."</p>
-                            <p class="kalimat-penegas fs-5">Ayat ini menjadi pegangan <br> dan pengingat kami bahwa <br>
+                            <p class="kalimat-penegas fs-5">Ayat ini menjadi pegangan <br> dan pengingat kami bahwa
+                                <br>
                                 dengan Kristus,
-                                tidak ada <br> yang mustahil.</p>
+                                tidak ada <br> yang mustahil.
+                            </p>
                     </div>
                 </div>
                 <div class="col-4 z-0" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
                     <img src="assets/img/bunga_7.png" alt="border" class="bunga_7 position-absolute">
                 </div>
-                <div class="col-12 z-1" data-aos="fade-left" data-aos-duration="3000" data-aos-delay="1250">
+                <div class="col-12 z-1" data-aos="fade-left" data-aos-duration="3000" data-aos-delay="1000">
                     <img src="assets/img/bunga_6.png" alt="border" class="bunga_6 ">
                 </div>
             </div>
@@ -274,8 +295,8 @@
                     <div class="section-title text-center">
                         <div class="fw-bold bundt font-big fw-bold mt-5" data-aos="fade-down" data-aos-duration="3000"
                             data-aos-delay="100">RSVP</div>
-                        <p class="atkinson font-small fst-italic" data-aos="fade-down" data-aos-duration="3000"
-                            data-aos-delay="1500">Bagi tamu yang terhormat, silahkan untuk memberikan
+                        <p class="atkinson font-small fst-italic" data-aos="zoom-in" data-aos-duration="3000"
+                            data-aos-delay="500">Bagi tamu yang terhormat, silahkan untuk memberikan
                             konfirmasi kehadiran untuk mempermudah kami dalam pengelolaan tamu</p>
                     </div>
                     <form
@@ -350,13 +371,11 @@
     <footer id="footer-section" class="d-flex align-items-center">
         <div class="container py-5 text-center position-relative">
             <div class="row">
-                <div class="col-12 font-small" data-aos="fade-up"
-                    data-aos-duration="3000" data-aos-delay="1000">
+                <div class="col-12 font-small" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
                     <a href="https://www.tiktok.com/search?q=baptis_trangkil" target="_blank"
                         class="text-decoration-none text-red fw-bold">&copy;2025. Made with ❤️ by Mikhael Surya</a>
                 </div>
-                <div class="col-12 fs-6" data-aos="fade-up"
-                    data-aos-duration="3000" data-aos-delay="1000">
+                <div class="col-12 fs-6" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
                     <a href="#" class="text-red"><i class="fas fa-fw fa-arrow-up"></i> Back to top</a>
                 </div>
             </div>
