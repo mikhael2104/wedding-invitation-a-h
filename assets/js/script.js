@@ -1,59 +1,98 @@
-AOS.init()
+AOS.init({
+    once: false,
+    mirror: false,
+    duration: 1000
+});
 
 // music
-var tempMusic = ''
-music = document.querySelector('.music')
+var music = document.querySelector('.music');
+var isPlaying = true;
 
-if (tempMusic) {
-    music.src = tempMusic
-}
+// navbar musik lingkaran
+var musicNav = document.querySelector('.nav');
+
+// awalnya disembunyikan
+musicNav.style.display = 'none';
+
+// disable scroll di awal
+document.body.style.overflow = 'hidden';
 
 // door mulai
 function mulai() {
     // back to top
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
 
-    // door section
-    var doorSection = $('#door-section')
-    var doors = document.querySelectorAll('.door')
+    var doorSection = $('#door-section');
 
-    // set timeout music
     setTimeout(function () {
-        // music play
-        music.play()
-        doorSection.css('transform-origin', '50% 650px')
-        doorSection.css('transform', 'scale(6)')
-    }, 600)
+        // musik play
+        music.play();
+        doorSection.css('transform-origin', '50% 650px');
+        doorSection.css('transform', 'scale(6)');
+    }, 600);
 
-    // set timeout door
     setTimeout(function () {
-        doorSection.css('opacity', 0)
-        $('body').addClass('transition')
-        doorSection.css('display', 'none')
-    }, 2000)
+        doorSection.css('opacity', 0);
+        $('body').addClass('transition');
+        doorSection.css('display', 'none');
+
+        // aktifkan scroll lagi
+        document.body.style.overflow = 'auto';
+
+        // munculkan navbar musik setelah pintu hilang
+        musicNav.style.display = 'block';
+        // optional: tambahkan animasi fade-in
+        musicNav.style.opacity = 0;
+        setTimeout(() => {
+            musicNav.style.transition = 'opacity 0.5s ease-in-out';
+            musicNav.style.opacity = 1;
+        }, 50);
+
+        // refresh AOS supaya animasi section lain muncul
+        setTimeout(() => {
+            AOS.refreshHard();
+        }, 300);
+    }, 2000);
 }
 
-// button music
-var isPlaying = true
-
+// toggle musik
 function toggleMusic(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const musicButton = document.getElementById('music-button')
+    const musicButton = document.getElementById('music-button');
 
     if (isPlaying) {
-        musicButton.innerHTML = '<i class ="fas fa-fw fa-pause"></i>'
-        musicButton.classList.remove('rotate')
-        musicButton.style.transform = 'translateY(0)'
-        music.pause()
+        musicButton.innerHTML = '<i class ="fas fa-fw fa-pause"></i>';
+        musicButton.classList.remove('rotate');
+        musicButton.style.transform = 'translateY(0)';
+        music.pause();
     } else {
-        musicButton.innerHTML = '<i class = "fas fa-fw fa-compact-disc"></i>'
-        musicButton.classList.add('rotate')
-        music.play()
+        musicButton.innerHTML = '<i class="fas fa-fw fa-compact-disc"></i>';
+        musicButton.classList.add('rotate');
+        music.play();
     }
 
-    isPlaying = !isPlaying
+    isPlaying = !isPlaying;
 }
+
+
+// tombol open-invitation
+document.querySelector('.btn-open').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const doorSection = document.getElementById('door-section');
+    
+    // animasi naik
+    doorSection.style.transform = 'translateY(-100%)';
+    doorSection.style.opacity = '0';
+
+    // setelah animasi selesai, sembunyikan section
+    setTimeout(() => {
+        doorSection.style.display = 'none';
+        document.body.classList.add('transition');
+    }, 1000); // durasi sama dengan transition di CSS
+});
+
 
 // nama sambutan
 const urlParams = new URLSearchParams(window.location.search)

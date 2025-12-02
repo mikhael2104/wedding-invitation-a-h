@@ -1,11 +1,26 @@
+:root{
+    --blue-grey: #5e6da0;
+    --white: #ffffff;
+}
+
 html {
     scroll-behavior: smooth;
+}
+
+body.transition{
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+}
+
+#content-section {
+    overflow-x: hidden;
 }
 
 /* music audio */
@@ -67,7 +82,37 @@ body {
     }
 }
 
-/* Hero Section */
+/* door Section */
+
+@keyframes slideUpAnimation {
+    from{
+        translateY: 100%;
+    }
+    to{
+        translateY: 0%;
+    }
+}
+
+@keyframes fadeUp {
+	100% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* tambahan CSS untuk animasi naik */
+#door-section {
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    position: relative;
+    z-index: 100;
+}
+
+
 .atkinson{
     font-family: 'Atkinson Hyperlegible', 'serif';
 }
@@ -80,6 +125,15 @@ body {
     font-size: 45px;
 }
 
+.kotak-door {
+    position: relative; /* KUNCI PERBAIKAN */
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    animation: slideUpAnimation 2s ease-in 0s both;
+}
+
 .kotak {
     position: relative; /* KUNCI PERBAIKAN */
     background-color: white;
@@ -90,13 +144,32 @@ body {
 
 .bunga_1{
     width: 450px;
-    margin-left: -200px;
+    margin-left: -250px;
+}
+
+@keyframes rotate_left{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-5deg);
+    }
 }
 
 .bunga_2 {
     margin-top: -200px;
     width: 650px;
     margin-left: -140px;
+    animation: rotate_right 2s ease-in-out 0s infinite alternate-reverse both;
+}
+
+@keyframes rotate_right{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
 }
 
 .burung{
@@ -105,8 +178,9 @@ body {
 
 .tamu{
     position: absolute;
-    bottom: 70px;
+    bottom: 300px;
     right: 30px;
+    animation: fadeUp 2s ease-in-out 0s alternate-reverse both;
 }
 
 .font-big{
@@ -121,6 +195,41 @@ body {
     font-size: 15px;
 }
 
+.btn-open{
+    background-color: var(--blue-grey) !important;
+    border: none;
+    z-index: 5;
+    animation: fadeUp 2s ease-in-out 0s alternate-reverse both;
+}
+/* hero section */
+
+.brush_white_2 img{
+    width:500px;
+    margin-left: -50px;
+    margin-top: -30px;
+}
+
+.tunangan-4 img{
+    width: 600px;
+    margin-left: -100px;
+}
+
+.brush_white img{
+    width: 700px;
+    margin-top: -150px;
+}
+
+.bunga_-1 img {
+    width: 400px;
+    margin-left: -220px;
+    margin-top: -200px;
+}
+
+.bunga_-2 img {
+    width: 400px;
+    margin-left: -100px;
+    margin-top: -200px;
+}
 
 /* introduction-section */
 .border{
@@ -137,13 +246,13 @@ body {
 
 .bunga_4{
     width: 400px;
-    margin-left: -150px;
+    margin-left: -190px;
     margin-top: -150px;
 }
 
 .bunga_3{
     width: 400px;
-    margin-left: -100px;
+    margin-left: -70px;
     margin-top: -150px;
 }
 
@@ -160,7 +269,8 @@ body {
     width: 500px;
     z-index: 1;
     position: absolute;
-    margin-left: -50px; 
+    margin-left: -50px;
+    animation: rotate_right 2s ease-in-out 0s infinite alternate both; 
 }
 
 /* --- Gallery Horizontal Scroll --- */
@@ -222,6 +332,7 @@ body {
 .bunga-merah{
     width: 250px;
     z-index: 1;
+    animation: rotate_left 1.5s ease-in-out 0s infinite alternate-reverse both;
 }
 
 .burung-gallery{
@@ -239,16 +350,33 @@ body {
 .bunga_6{
     width: 1000px;
     margin-top: -200px;
-    margin-left: -370px;
+    margin-left: -300px;
 }
 
 .bunga_7{
     width: 500px;
     margin-left: -150px;
+    animation: rotate_left 2s ease-in-out 0s infinite alternate-reverse both;
+}
+
+.bunga_merah_panjang {
+    width: 200px;
+    position: absolute;
+    margin-top: -500px;
+    margin-left: 50px;
+    animation: rotate_left 2s ease-in-out 1s infinite alternate-reverse both;
+}
+
+.bunga_merah_af {
+    width: 200px;
+    position: absolute;
+    z-index: 1;
+    margin-top: -400px;
+    margin-left: 190px;
+    animation: rotate_right 2s ease-in-out 0s infinite alternate-reverse both;
 }
 
 .text{
-    z-index: 1; 
     margin-top: 100px;
 }
 
