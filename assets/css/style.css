@@ -371,10 +371,25 @@ body {
 .bunga_merah_af {
     width: 200px;
     position: absolute;
-    z-index: 1;
     margin-top: -400px;
     margin-left: 190px;
     animation: rotate_right 2s ease-in-out 0s infinite alternate-reverse both;
+}
+
+.bunga_putih_1 {
+    width: 200px;
+    position: absolute;
+    margin-top: -370px;
+    margin-left: 80px;
+    animation: rotate_right 2s ease-in-out 2s infinite alternate-reverse both;
+}
+
+.bunga_putih_2 {
+    width: 80px;
+    position: absolute;
+    margin-top: -390px;
+    margin-left: 150px;
+    animation: rotate_left 2s ease-in-out 1.5s infinite alternate-reverse both;
 }
 
 .text{
